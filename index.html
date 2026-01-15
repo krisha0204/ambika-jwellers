@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ambika Jewellers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:#220808;
+  color:#f3e8d3;
+  font-family:"Poppins",sans-serif;
+}
+
+/* ---- HERO ---- */
+.hero{
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+}
+
+/* SLIDES */
+.slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.2s ease;
+}
+.slide.active{ opacity:1; }
+
+/* Overlay tone */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,#1c0606,rgba(0,0,0,.35),#1c0606);
+}
+
+/* Content */
+.content{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  z-index:5;
+  max-width:780px;
+  padding:0 18px;
+}
+
+/* SHOP NAME */
+.brand{
+  font-family:"Playfair Display",serif;
+  font-size:40px;
+  color:#f5e9cf;
+  letter-spacing:.6px;
+  margin-bottom:6px;
+}
+
+.tagline{
+  opacity:.9;
+  font-size:14px;
+  margin-bottom:26px;
+  letter-spacing:.3px;
+}
+
+/* CTA */
+.cta{
+  padding:12px 28px;
+  border-radius:26px;
+  border:1px solid rgba(243,233,207,.6);
+  color:#f5e9cf;
+  text-decoration:none;
+  font-weight:500;
+}
+.cta:hover{ background:rgba(255,235,200,.12); }
+
+/* Dots */
+.dots{
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+  z-index:5;
+}
+.dot{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:#8a6b5c;
+}
+.dot.active{ background:#f3e8d3; }
+
+/* ---- MARQUEE IMAGE STRIP ---- */
+.marquee-wrap {
+  background:#1a0505;
+  overflow:hidden;
+  padding:14px 0;
+  border-top:1px solid rgba(255,215,180,.25);
+  border-bottom:1px solid rgba(255,215,180,.25);
+}
+
+.marquee {
+  display: flex;
+  width: calc(200%); /* because images are repeated */
+  animation: scroll 30s linear infinite; /* adjust speed as needed */
+}
+
+.marquee img {
+  height:110px;
+  margin-right:14px;
+  opacity:.9;
+  border-radius:0; /* sharp corners */
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
+
+/* ---- INFO SECTION ---- */
+.info{
+  padding:36px 20px 60px;
+  text-align:center;
+  max-width:820px;
+  margin:auto;
+}
+
+.info h2{
+  font-family:"Playfair Display",serif;
+  margin-bottom:20px;
+  color:#f5e9cf;
+}
+
+.info p{
+  opacity:.9;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.highlight{
+  color:#f5e9cf;
+  font-weight:600;
+}
+
+/* Logo */
+.logo{
+  width:100px;
+  height:100px;
+  margin:0 auto 20px;
+  background:#f5e9cf;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+  color:#220808;
+  font-weight:bold;
+  text-shadow:1px 1px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Owners Section */
+.owners{
+  margin-bottom:30px;
+  background: rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.owners h3{
+  font-family:"Playfair Display",serif;
+  font-size:24px;
+  color:#f5e9cf;
+  margin-bottom:15px;
+}
+
+.owner{
+  margin-bottom:15px;
+  padding:10px;
+  background: rgba(255,255,255,0.03);
+  border-radius:10px;
+}
+
+.owner-name{
+  font-weight:600;
+  color:#f5e9cf;
+  display:block;
+  margin-bottom:5px;
+}
+
+.contact-links{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+}
+
+.contact-link{
+  color:#f5e9cf;
+  text-decoration:none;
+  font-size:14px;
+  padding:5px 10px;
+  border-radius:20px;
+  background: rgba(255,255,255,0.1);
+  transition: background 0.3s ease;
+}
+
+.contact-link:hover{
+  background: rgba(255,255,255,0.2);
+}
+
+/* Gujarati text styling */
+.gujarati{
+  font-family: 'Noto Sans Gujarati', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* Map container */
+.map-container{
+  margin: 30px auto 0;
+  max-width: 600px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.map-container iframe{
+  width: 100%;
+  height: 300px;
+  border: none;
+}
+
+.fun-address {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: #f5e9cf;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.fun-address .highlight {
+  color: #ffd700; /* gold color for shop name */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Footer */
+.footer{
+  background: #1a0505;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid rgba(255,215,180,.25);
+}
+
+.footer p{
+  margin: 0;
+  opacity: 0.8;
+  font-size: 12px;
+}
+
+/* responsive */
+@media(max-width:600px){
+  .brand{font-size:26px;}
+  .tagline{font-size:12px;}
+  marquee img{height:80px;}
+  .gujarati{font-size:14px;}
+  .map-container iframe{height:250px;}
+  .logo{width:80px; height:80px; font-size:36px;}
+  .owners h3{font-size:20px;}
+  .contact-links{flex-direction:column; gap:10px;}
+}
+
+/* ---------- MOBILE RESPONSIVE ---------- */
+@media(max-width: 768px){
+  .hero{ height: 100vh; }
+  .slide{ background-size: cover; background-position: center; opacity: 0; }
+  .slide.active{ opacity:1; }
+  .content{ width: 92%; left: 50%; transform: translate(-50%, -50%); padding: 0 6px; }
+  .brand{ font-size: 28px; line-height: 1.1; }
+  .tagline{ font-size: 12px; margin-bottom: 18px; }
+  .cta{ padding:10px 22px; font-size: 13px; border-radius: 22px; }
+  .dots{ bottom:18px; }
+  marquee img{ height:75px; opacity:.85; }
+  .info{ padding:28px 14px 48px; }
+  .info h2{ font-size:20px; }
+  .info p{ font-size:13px; line-height:1.6; }
+  .gujarati{ font-size:13px; }
+  .map-container{ margin: 20px auto; }
+  .map-container iframe{ height:200px; }
+  .logo{width:70px; height:70px; font-size:28px;}
+  .owners h3{font-size:20px;}
+  .contact-link{font-size:13px;}
+}
+
+/* ---------- SMALL PHONES (≤480px) ---------- */
+@media(max-width:480px){
+  .brand{ font-size:24px; }
+  .tagline{ font-size:11px; }
+  .hero{ height: 92vh; }
+  marquee img{ height:68px; }
+  .cta{ font-size:12px; padding:9px 18px; }
+  .gujarati{ font-size:12px; }
+  .map-container iframe{ height:180px; }
+  .logo{width:60px; height:60px; font-size:24px;}
+  .owners h3{font-size:18px;}
+  .contact-link{font-size:12px;}
+}
+</style>
+
+<!-- Add Gujarati font -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<!-- ===== HERO SLIDER ===== -->
+<section class="hero">
+  <div class="slide active" style="background-image:url('1.jpg');"></div>
+  <div class="slide" style="background-image:url('2.jpg');"></div>
+  <div class="slide" style="background-image:url('3.jpg');"></div>
+  <div class="slide" style="background-image:url('4.jpg');"></div>
+
+  <div class="content">
+      <div class="brand">Ambika Jewellers</div>
+      <div class="tagline">Gold & Silver Ornaments • Custom Designs • Trusted Craftsmanship</div>
+      <a href="collection.html" class="cta">Explore Collection</a>
+  </div>
+
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</section>
+
+<!-- ===== SLIDING IMAGE MARQUEE ===== -->
+<!-- ===== SLIDING IMAGE MARQUEE ===== -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <img src="gallery/1.jpeg" alt="">
+    <img src="gallery/2.jpeg" alt="">
+    <img src="gallery/3.jpeg" alt="">
+    <img src="gallery/4.jpeg" alt="">
+    <img src="gallery/5.jpeg" alt="">
+    <img src="gallery/6.jpeg" alt="">
+    <img src="gallery/7.jpeg" alt="">
+    <img src="gallery/8.jpeg" alt="">
+    <img src="gallery/9.jpeg" alt="">
+    <img src="gallery/10.jpeg" alt="">
+    
+
+    <!-- Repeat images for seamless loop -->
+    <img src="gallery/1.jpeg" alt="">
+    <img src="gallery/2.jpeg" alt="">
+    <img src="gallery/3.jpeg" alt="">
+    <img src="gallery/4.jpeg" alt="">
+    <img src="gallery/5.jpeg" alt="">
+    <img src="gallery/6.jpeg" alt="">
+    <img src="gallery/7.jpeg" alt="">
+    <img src="gallery/8.jpeg" alt="">
+    <img src="gallery/9.jpeg" alt="">
+    <img src="gallery/10.jpeg" alt="">
+    
+  </div>
+</div>
+
+
+<!-- ===== SHOP INFO SECTION ===== -->
+<section class="info">
+  <div class="logo">A</div> <!-- Placeholder logo; replace with actual image if available -->
+  <h2>Ambika Jewellers</h2>
+
+  <div class="owners">
+    
+    
+    <div class="owner">
+      <span class="owner-name">Bhadresh Shantilal Rajpura</span>
+      <div class="contact-links">
+        <a href="tel:9925513572" class="contact-link">📞 Call</a>
+        <a href="https://wa.me/919925513572" target="_blank" class="contact-link">💬 WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="owner">
+      <span class="owner-name">Chandrakant Shantilal Rajpura</span>
+      <div class="contact-links">
+        <a href="tel:8306340023" class="contact-link">📞 Call</a>
+        <a href="https://wa.me/918306340023" target="_blank" class="contact-link">💬 WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+
+<div class="contact-links">
+  <a href="https://instagram.com/ambika_jew" target="_blank" class="contact-link">📸 Instagram</a>
+</div>
+
+<p class="fun-address">
+  📍 <span class="highlight">Ambika Jewellers</span><br>
+   Pirchalla Street, opp. gandhi delo, <br> nr. meldi maa temple 
+   , Bhavnagar, Gujarat, India
+</p>
+
+
+
+  <div class="map-container">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.034671405539!2d72.14716500000001!3d21.777822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395f5c1b2abcdeff%3A0xabcdef1234567890!2sPirchalla%20Street%2C%20Bhavnagar%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000001"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+  
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>&copy; 2023 Ambika Jewellers. All rights reserved. | Designed with ❤️</p>
+</footer>
+
+<!-- ===== SLIDER SCRIPT ===== -->
+<script>
+let slides=document.querySelectorAll(".slide");
+let dots=document.querySelectorAll(".dot");
+let i=0;
+setInterval(()=>{
+  slides[i].classList.remove("active");
+  dots[i].classList.remove("active");
+  i=(i+1)%slides.length;
+  slides[i].classList.add("active");
+  dots[i].classList.add("active");
+},4500);
+</script>
+</body>
+</html>

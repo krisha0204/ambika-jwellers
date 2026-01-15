@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Collection - Ambika Jewellers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:#220808;
+  color:#f3e8d3;
+  font-family:"Poppins",sans-serif;
+  overflow-x:hidden;
+  padding-top: 80px; /* Space for fixed back arrow */
+}
+
+/* Back Arrow */
+.back-arrow{
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  background: rgba(243,233,207,0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #220808;
+  font-size: 24px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.back-arrow:hover{
+  background: #f5e9cf;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+
+/* Header Section */
+.header{
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #1c0606 0%, #3a0f0f 50%, #1c0606 100%);
+  margin-bottom: 40px;
+}
+
+.header h1{
+  font-family:"Playfair Display",serif;
+  font-size: 48px;
+  color:#f5e9cf;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.header p{
+  opacity:.9;
+  line-height:1.8;
+  font-size:16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Gujarati text styling */
+.gujarati{
+  font-family: 'Noto Sans Gujarati', sans-serif;
+  font-size: 18px;
+  line-height: 1.9;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* ---- JEWELRY INFORMATION SECTION ---- */
+.jewelry{
+  padding:60px 20px;
+  max-width:1400px;
+  margin:auto;
+  background: #220808;
+}
+
+.jewelry h2{
+  font-family:"Playfair Display",serif;
+  font-size:36px;
+  text-align:center;
+  margin-bottom:50px;
+  color:#f5e9cf;
+  position: relative;
+}
+
+.jewelry h2::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(to right, #d4af37, #f5e9cf);
+  margin: 15px auto;
+  border-radius: 2px;
+}
+
+.jewelry-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.jewelry-item{
+  background: linear-gradient(145deg, #1a0505, #2a0a0a);
+  border-radius:10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.jewelry-item:hover{
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+}
+
+.jewelry-item img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  transition: transform 0.3s ease;
+}
+
+.jewelry-item:hover img{
+  transform: scale(1.1);
+}
+
+.view-more{
+  text-align: center;
+}
+
+.view-more-btn{
+  padding: 15px 30px;
+  background: linear-gradient(to right, #d4af37, #f5e9cf);
+  color: #220808;
+  border: none;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.view-more-btn:hover{
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+
+/* ---- GALLERY MODAL ---- */
+.modal{
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  overflow: auto;
+}
+
+.modal-content{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 50px auto;
+}
+
+.modal-item{
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.modal-item:hover{
+  transform: scale(1.05);
+}
+
+.modal-item img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+
+.close{
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  color: #f5e9cf;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ---- LIGHTBOX ---- */
+.lightbox{
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+}
+
+#lightbox img {
+  max-width: 95vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;   /* NO CROPPING */
+  margin: auto;
+  display: block;
+}
+
+
+.lightbox.zoomed img{
+  transform: scale(1.5);
+}
+
+.lightbox-controls{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.lightbox-controls button{
+  background: rgba(255,255,255,0.8);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.lightbox-controls button:hover{
+  background: #f5e9cf;
+}
+
+.zoom-btn{
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.8);
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.zoom-btn:hover{
+  background: #f5e9cf;
+}
+
+.close-lightbox{
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  color: #f5e9cf;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Footer */
+.footer{
+  background: linear-gradient(to top, #1a0505, #220808);
+  padding: 30px;
+  text-align: center;
+  border-top: 2px solid rgba(255,215,180,.3);
+  margin-top: 40px;
+}
+
+.footer p{
+  margin: 0;
+  opacity: 0.8;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ===== RESPONSIVE – FIXED VERSION (NO CROPPING) ===== */
+
+@media(max-width:600px){
+  .header h1{font-size:32px;}
+  .header p{font-size:14px;}
+  .gujarati{font-size:16px;}
+
+  .jewelry-item img{
+    height:auto;
+    object-fit:contain;
+  }
+
+  .modal-content{
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .modal-item img{
+    height:auto !important;
+    object-fit:contain !important;
+    aspect-ratio:1/1;
+  }
+
+  .lightbox img{
+    max-width: 95vw !important;
+    max-height: 85vh !important;
+    object-fit: contain !important;
+  }
+}
+
+/* ---------- MOBILE RESPONSIVE ---------- */
+@media(max-width: 768px){
+  .header{ padding:40px 14px; }
+  .header h1{ font-size: 36px; }
+  .header p{ font-size:15px; }
+  .gujarati{ font-size:17px; }
+
+  .jewelry{ padding:40px 14px; }
+
+  .jewelry-grid{
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .jewelry-item img{
+    height:auto;
+    object-fit:contain;
+  }
+
+  .modal-content{
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  .modal-item img{
+    height:auto !important;
+    object-fit:contain !important;
+    aspect-ratio:1/1;
+  }
+
+  .lightbox img{
+    max-width: 98vw !important;
+    max-height: 88vh !important;
+  }
+}
+
+/* ---------- SMALL PHONES (≤480px) ---------- */
+@media(max-width:480px){
+  .header h1{ font-size:28px; }
+  .header p{ font-size:13px; }
+  .gujarati{ font-size:15px; }
+
+  .jewelry-item img{
+    height:auto;
+  }
+
+  .modal-content{
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+  }
+
+  .modal-item img{
+    height:auto !important;
+    object-fit:contain !important;
+    aspect-ratio:1/1;
+  }
+
+  .lightbox img{
+    max-width: 100vw !important;
+    max-height: 90vh !important;
+  }
+}
+
+</style>
+
+<!-- Add Gujarati font -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<!-- Back Arrow -->
+<a href="index.html" class="back-arrow">&larr;</a>
+
+<!-- Header Section -->
+<section class="header">
+  <h1>Ambika Jewellers</h1>
+  <p class="gujarati">
+    અમ્બિકા જ્વેલર્સ એ ગુજરાતના ભાવનગરમાં સ્થિત એક વિશ્વસનીય જ્વેલરી સ્ટોર છે, જ્યાં અમે વર્ષોથી સોના અને ચાંદીના શણગારો બનાવી રહ્યા છીએ. અમારી ટીમ નિષ્ણાત કારીગરોની છે, જેઓ દરેક ડિઝાઇનમાં ઉચ્ચ ગુણવત્તા અને સુંદરતા ની ખાતરી કરે છે. અમે કસ્ટમ ડિઝાઇન્સ પર ધ્યાન કેન્દ્રિત કરીએ છીએ, જેથી દરેક ગ્રાહકને તેમની પસંદગી અનુસાર શણગાર મળે. અમારો ઉદ્દેશ્ય ગ્રાહકોને સંપૂર્ણ સંતોષ આપવાનો છે, અને અમે દરેક ઓર્ડર પર વ્યક્તિગત ધ્યાન આપીએ છીએ.
+  </p>
+  
+</section>
+
+<!-- ===== JEWELRY INFORMATION SECTION ===== -->
+<section class="jewelry">
+  <h2>Our Jewelry Collection</h2>
+  <div class="jewelry-grid">
+    <!-- 4 Initial Images -->
+    <div class="jewelry-item"><img src="gallery/1.jpeg" alt="Jewelry 1"></div>
+    <div class="jewelry-item"><img src="gallery/2.jpeg" alt="Jewelry 2"></div>
+    <div class="jewelry-item"><img src="gallery/3.jpeg" alt="Jewelry 3"></div>
+    <div class="jewelry-item"><img src="gallery/4.jpeg" alt="Jewelry 4"></div>
+  </div>
+  <div class="view-more">
+    <button class="view-more-btn" onclick="openModal()">View More</button>
+  </div>
+</section>
+
+<!-- ===== GALLERY MODAL ===== -->
+<div id="galleryModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+    <!-- 30 Image Placeholders -->
+    <div class="modal-item" onclick="openLightbox(0)"><img src="gallery/1.jpeg" alt="Jewelry 1"></div>
+    <div class="modal-item" onclick="openLightbox(1)"><img src="gallery/2.jpeg" alt="Jewelry 2"></div>
+    <div class="modal-item" onclick="openLightbox(2)"><img src="gallery/3.jpeg" alt="Jewelry 3"></div>
+    <div class="modal-item" onclick="openLightbox(3)"><img src="gallery/4.jpeg" alt="Jewelry 4"></div>
+    <div class="modal-item" onclick="openLightbox(4)"><img src="gallery/5.jpeg" alt="Jewelry 5"></div>
+    <div class="modal-item" onclick="openLightbox(5)"><img src="gallery/6.jpeg" alt="Jewelry 6"></div>
+    <div class="modal-item" onclick="openLightbox(6)"><img src="gallery/7.jpeg" alt="Jewelry 7"></div>
+    <div class="modal-item" onclick="openLightbox(7)"><img src="gallery/8.jpeg" alt="Jewelry 8"></div>
+    <div class="modal-item" onclick="openLightbox(8)"><img src="gallery/9.jpeg" alt="Jewelry 9"></div>
+    <div class="modal-item" onclick="openLightbox(9)"><img src="gallery/10.jpeg" alt="Jewelry 10"></div>
+    <div class="modal-item" onclick="openLightbox(10)"><img src="gallery/11.jpeg" alt="Jewelry 11"></div>
+    <div class="modal-item" onclick="openLightbox(11)"><img src="gallery/12.jpeg" alt="Jewelry 12"></div>
+    <div class="modal-item" onclick="openLightbox(12)"><img src="gallery/13.jpeg" alt="Jewelry 13"></div>
+    <div class="modal-item" onclick="openLightbox(13)"><img src="gallery/14.jpeg" alt="Jewelry 14"></div>
+    <div class="modal-item" onclick="openLightbox(14)"><img src="gallery/15.jpeg" alt="Jewelry 15"></div>
+    <div class="modal-item" onclick="openLightbox(15)"><img src="gallery/16.jpeg" alt="Jewelry 16"></div>
+    <div class="modal-item" onclick="openLightbox(16)"><img src="gallery/17.jpeg" alt="Jewelry 17"></div>
+    <div class="modal-item" onclick="openLightbox(17)"><img src="gallery/18.jpeg" alt="Jewelry 18"></div>
+    <div class="modal-item" onclick="openLightbox(18)"><img src="gallery/19.jpeg" alt="Jewelry 19"></div>
+    <div class="modal-item" onclick="openLightbox(19)"><img src="gallery/20.jpeg" alt="Jewelry 20"></div>
+    <div class="modal-item" onclick="openLightbox(20)"><img src="gallery/21.jpeg" alt="Jewelry 21"></div>
+    <div class="modal-item" onclick="openLightbox(21)"><img src="gallery/22.jpeg" alt="Jewelry 22"></div>
+    <div class="modal-item" onclick="openLightbox(22)"><img src="gallery/23.jpeg" alt="Jewelry 23"></div>
+    <div class="modal-item" onclick="openLightbox(23)"><img src="gallery/24.jpeg" alt="Jewelry 24"></div>
+    <div class="modal-item" onclick="openLightbox(24)"><img src="gallery/25.jpeg" alt="Jewelry 25"></div>
+    <div class="modal-item" onclick="openLightbox(25)"><img src="gallery/26.jpeg" alt="Jewelry 26"></div>
+    <div class="modal-item" onclick="openLightbox(26)"><img src="gallery/27.jpeg" alt="Jewelry 27"></div>
+    <div class="modal-item" onclick="openLightbox(27)"><img src="gallery/28.jpeg" alt="Jewelry 28"></div>
+    <div class="modal-item" onclick="openLightbox(28)"><img src="gallery/29.jpeg" alt="Jewelry 29"></div>
+    <div class="modal-item" onclick="openLightbox(29)"><img src="gallery/30.jpeg" alt="Jewelry 30"></div>
+  </div>
+</div>
+
+<div id="lightbox" class="lightbox">
+  <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+
+  <div class="lightbox-controls">
+    <button onclick="prevImage()">❮</button>
+    <button onclick="nextImage()">❯</button>
+  </div>
+
+  <img src="" />
+</div>
+
+<script>
+// ===== MODAL =====
+function openModal() {
+  document.getElementById("galleryModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("galleryModal").style.display = "none";
+}
+
+// close when clicking outside
+window.onclick = function(event) {
+  let modal = document.getElementById("galleryModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+let currentIndex = 0;
+let images = [];
+
+window.onload = function() {
+  images = document.querySelectorAll(".modal-item img");
+};
+
+function openLightbox(index) {
+
+  if(images.length === 0){
+    images = document.querySelectorAll(".modal-item img");
+  }
+
+  currentIndex = index;
+
+  const lightbox = document.getElementById("lightbox");
+  const img = document.querySelector("#lightbox img");
+
+  lightbox.style.display = "flex";
+  img.src = images[index].src;
+}
+
+
+// close
+function closeLightbox() {
+  const lightbox = document.getElementById("lightbox");
+  lightbox.style.display = "none";
+  lightbox.classList.remove("zoomed");
+}
+
+// next / prev
+function nextImage() {
+  currentIndex = (currentIndex + 1) % images.length;
+  document.querySelector("#lightbox img").src = images[currentIndex].src;
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  document.querySelector("#lightbox img").src = images[currentIndex].src;
+}
+
+// zoom
+function toggleZoom() {
+  document.getElementById("lightbox").classList.toggle("zoomed");
+}
+
+// ===== SWIPE =====
+let startX = 0;
+const lbImg = document.querySelector("#lightbox img");
+
+lbImg.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+lbImg.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 40) nextImage();
+  if (endX - startX > 40) prevImage();
+});
+
+// double tap zoom
+let lastTap = 0;
+
+lbImg.addEventListener("click", () => {
+  let now = new Date().getTime();
+
+  if (now - lastTap < 300) {
+    toggleZoom();
+  }
+
+  lastTap = now;
+});
+</script>
+
+</body>
+</html>
