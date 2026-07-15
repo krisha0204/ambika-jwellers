@@ -346,46 +346,37 @@ body{
 <section class="categories">
   <div class="category-grid">
     <article class="category-card">
-      <img src="s4.jpg" alt="Bridal jewellery" />
+      <img src="gold/1.jpg" alt="Gold jewellery" />
       <div class="category-content">
-        <h2>Bridal</h2>
-        <p>Elegant bridal sets designed to shine at weddings, receptions, and cherished family celebrations.</p>
-        <button class="open-gallery" data-category="bridal">View Bridal Gallery</button>
+        <h2>Gold</h2>
+        <p>Our gold collection brings together classic, everyday, and statement pieces from the full gold set.</p>
+        <button class="open-gallery" data-category="gold">View Gold Gallery</button>
       </div>
     </article>
 
     <article class="category-card">
-      <img src="gallery/2.jpeg" alt="Daily wear jewellery" />
-      <div class="category-content">
-        <h2>Daily Wear</h2>
-        <p>Refined, comfortable pieces made for graceful everyday wear with a touch of simplicity.</p>
-        <button class="open-gallery" data-category="daily">View Daily Wear</button>
-      </div>
-    </article>
-
-    <article class="category-card">
-      <img src="gallery/3.jpeg" alt="Custom jewellery designs" />
-      <div class="category-content">
-        <h2>Custom Designs</h2>
-        <p>Personalised jewellery made to your style, preference, and special occasion.</p>
-        <button class="open-gallery" data-category="custom">View Custom Designs</button>
-      </div>
-    </article>
-
-    <article class="category-card">
-      <img src="gallery/12.jpeg" alt="Silver jewellery collection" />
+      <img src="silver/1.jpg" alt="Silver jewellery" />
       <div class="category-content">
         <h2>Silver</h2>
-        <p>Elegant silver jewellery, from everyday essentials to standout statement pieces.</p>
+        <p>Elegant silver jewellery, from simple essentials to brighter pieces for special moments.</p>
         <button class="open-gallery" data-category="silver">View Silver Gallery</button>
       </div>
     </article>
 
     <article class="category-card">
-      <img src="gallery/5.jpeg" alt="Shop interior and showroom" />
+      <img src="bridal/1.jpg" alt="Bridal jewellery" />
+      <div class="category-content">
+        <h2>Bridal</h2>
+        <p>Bridal sets and wedding-ready designs chosen for their richness, detail, and finish.</p>
+        <button class="open-gallery" data-category="bridal">View Bridal Gallery</button>
+      </div>
+    </article>
+
+    <article class="category-card">
+      <img src="shop/1.jpg" alt="Shop interior" />
       <div class="category-content">
         <h2>Shop</h2>
-        <p>A refined look at our showroom, display, and the welcoming experience we offer.</p>
+        <p>A look at the shop space, display, and the in-store experience for our visitors.</p>
         <button class="open-gallery" data-category="shop">View Shop Gallery</button>
       </div>
     </article>
@@ -413,64 +404,109 @@ body{
 </div>
 
 <footer class="footer">
-  &copy; 2026 Ambika Jewellers. Bridal, daily wear and custom jewellery collections.
+  &copy; 2026 Ambika Jewellers. Gold, silver, bridal, and shop collections.
 </footer>
 
 <script>
 const galleries = {
+  gold: {
+    title: "Gold Gallery",
+    images: [
+      "gold/1.jpg",
+      "gold/2.jpg",
+      "gold/3.jpg",
+      "gold/4.jpg",
+      "gold/5.jpg",
+      "gold/6.jpg",
+      "gold/7.jpg",
+      "gold/8.jpeg",
+      "gold/9.jpg",
+      "gold/10.jpg",
+      "gold/11.jpg",
+      "gold/12.jpg",
+      "gold/13.jpg",
+      "gold/14 (2).jpg",
+      "gold/15.jpg",
+      "gold/16.jpg",
+      "gold/17.jpg",
+      "gold/18.jpg",
+      "gold/19.jpg",
+      "gold/20.jpg",
+      "gold/21.jpg",
+      "gold/22.jpg",
+      "gold/23.jpg",
+      "gold/24.jpg",
+      "gold/25.jpg",
+      "gold/26.jpg",
+      "gold/27.jpg",
+      "gold/28.jpg",
+      "gold/29.jpg",
+      "gold/30.jpg",
+      "gold/31.jpg",
+      "gold/32.jpg",
+      "gold/33.jpg",
+      "gold/34.jpg",
+      "gold/35.jpg",
+      "gold/36.jpg",
+      "gold/37.jpg",
+      "gold/38.jpg",
+      "gold/39.jpg",
+      "gold/40.jpg",
+      "gold/41.jpeg",
+      "gold/42.jpeg",
+      "gold/43.jpg"
+    ]
+  },
   bridal: {
     title: "Bridal Gallery",
     images: [
-      "s1.jpg",
-      "s4.jpg",
-      "gallery/9.jpeg",
-      "gallery/10.jpeg",
-      "gallery/13.jpeg",
-      "gallery/16.jpeg"
-    ]
-  },
-  daily: {
-    title: "Daily Wear Gallery",
-    images: [
-      "gallery/1.jpeg",
-      "gallery/2.jpeg",
-      "gallery/4.jpeg",
-      "gallery/5.jpeg",
-      "gallery/8.jpeg",
-      "gallery/12.jpeg"
-    ]
-  },
-  custom: {
-    title: "Custom Design Gallery",
-    images: [
-      "gallery/3.jpeg",
-      "gallery/6.jpeg",
-      "gallery/7.jpeg",
-      "gallery/11.jpeg",
-      "gallery/14.jpeg",
-      "gallery/15.jpeg"
+      "bridal/1.jpg",
+      "bridal/2.jpg",
+      "bridal/3.jpg",
+      "bridal/4.jpg",
+      "bridal/5.jpg",
+      "bridal/6.jpg",
+      "bridal/7.jpg",
+      "bridal/8.jpg",
+      "bridal/9.jpg",
+      "bridal/10.jpg",
+      "bridal/11.jpg",
+      "bridal/12.jpg",
+      "bridal/13.jpg",
+      "bridal/14.jpg",
+      "bridal/15.jpg",
+      "bridal/16.jpg",
+      "bridal/17.jpg",
+      "bridal/18.jpg",
+      "bridal/19.jpg",
+      "bridal/20.jpg"
     ]
   },
   shop: {
     title: "Shop Gallery",
     images: [
-      "gallery/5.jpeg",
-      "gallery/8.jpeg",
-      "gallery/9.jpeg",
-      "gallery/10.jpeg",
-      "gallery/12.jpeg",
-      "gallery/13.jpeg"
+      "shop/1.jpg",
+      "shop/2.jpg",
+      "shop/3.jpg",
+      "shop/4.jpg",
+      "shop/5.jpg",
+      "shop/6.jpg"
     ]
   },
   silver: {
     title: "Silver Gallery",
     images: [
-      "gallery/11.jpeg",
-      "gallery/12.jpeg",
-      "gallery/13.jpeg",
-      "gallery/14.jpeg",
-      "gallery/15.jpeg",
-      "gallery/16.jpeg"
+      "silver/1.jpg",
+      "silver/2.jpg",
+      "silver/3.jpg",
+      "silver/4.jpg",
+      "silver/5.jpg",
+      "silver/6.jpg",
+      "silver/7.jpg",
+      "silver/8.jpg",
+      "silver/9.jpg",
+      "silver/10.jpg",
+      "silver/11.jpg"
     ]
   }
 };

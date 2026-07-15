@@ -18,7 +18,7 @@ body{
 *{box-sizing:border-box;}
 
 .hero{
-  height:100vh;
+  min-height:88vh;
   position:relative;
   overflow:hidden;
 }
@@ -197,10 +197,11 @@ body{
 }
 
 .info{
-  padding:54px 20px 70px;
+  padding:34px 20px 70px;
   max-width:980px;
   margin:auto;
   text-align:center;
+  scroll-margin-top:24px;
 }
 
 .info h2{
@@ -359,7 +360,7 @@ body{
 }
 
 @media(max-width:768px){
-  .hero{height:94vh;}
+  .hero{min-height:82vh;}
   .brand{font-size:32px;}
   .tagline{font-size:13px; line-height:1.6;}
   .owners{grid-template-columns:1fr;}
@@ -383,7 +384,7 @@ body{
 }
 
 @media(max-width:480px){
-  .hero{height:92vh;}
+  .hero{min-height:78vh;}
   .eyebrow{font-size:11px;}
   .brand{font-size:28px;}
   .tagline{font-size:12px;}
